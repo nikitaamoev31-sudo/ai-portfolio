@@ -1,5 +1,7 @@
 # Hi, I'm Nikita Amoev 👋
 
+[![CI](https://github.com/nikitaamoev31-sudo/ai-portfolio/actions/workflows/ci.yml/badge.svg)](https://github.com/nikitaamoev31-sudo/ai-portfolio/actions/workflows/ci.yml)
+
 **AI Automation Engineer / Junior Java Developer** · Tbilisi · Remote (MSK / EU time)
 
 I build AI agents that replace manual work: lead generation, sales outreach, customer support, computer control.
