@@ -4,16 +4,20 @@ Autonomous AI agent that replaces three roles in cold outreach: **analyst, sales
 
 ## What it does
 1. Takes a list of companies (`leads.csv`) and scrapes each company's website.
-2. Uses an LLM (Gemini / OpenAI) to analyze the business: niche, services, audience.
+2. Uses a **local LLM (Llama 3.2 via Ollama)** to analyze the business: niche, services, audience — no API costs, data stays on the machine.
 3. Finds concrete places where an AI agent would help *this* company.
 4. Writes a short personalized cold email (strict copywriting rules in `system_prompt.txt`).
 5. Pushes ready emails into an outreach campaign via the **Instantly API** (`push_to_instantly.py`).
 
 ## Stack
-Python · LLM API (Gemini, OpenAI) · crawl4ai / BeautifulSoup · pandas · REST API (Instantly) · Docker
+Python · Local LLM (Ollama, Llama 3.2) · requests + BeautifulSoup (scraping) · pandas · REST API (Instantly) · Docker
 
 ## Run
 ```bash
+# 1. Local model
+ollama pull llama3.2 && ollama serve
+
+# 2. Agent
 cp .env.example .env          # add your API keys
 cp leads.example.csv leads.csv
 docker build -t ai-sales-agent .
