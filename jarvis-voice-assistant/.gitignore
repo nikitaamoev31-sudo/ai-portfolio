@@ -1,0 +1,14 @@
+.env
+.venv/
+venv/
+__pycache__/
+*.pyc
+.DS_Store
+*.log
+*.csv
+!leads.example.csv
+bookings.json
+yclients_bookings.json
+reminders_sent.json
+jarvis_memory.json
+jarvis_log.jsonl

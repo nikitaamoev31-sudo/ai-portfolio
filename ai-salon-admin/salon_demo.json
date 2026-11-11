@@ -1,0 +1,23 @@
+{
+  "name": "Салон красоты «Лаванда»",
+  "address": "ул. Руставели, 12",
+  "phone": "+995 555 00 00 00",
+  "timezone": "Asia/Tbilisi",
+  "work_hours": {"start": "10:00", "end": "20:00", "days_off": [6]},
+  "slot_step_min": 30,
+  "policies": "Отмена и перенос — не позднее чем за 3 часа. Опоздание больше 15 минут — визит может быть сокращён. Оплата картой или наличными на месте.",
+  "services": [
+    {"id": 1, "title": "Женская стрижка", "price": 60, "duration_min": 60},
+    {"id": 2, "title": "Мужская стрижка", "price": 35, "duration_min": 45},
+    {"id": 3, "title": "Окрашивание в один тон", "price": 120, "duration_min": 120},
+    {"id": 4, "title": "Маникюр с покрытием гель-лак", "price": 45, "duration_min": 90},
+    {"id": 5, "title": "Педикюр с покрытием", "price": 55, "duration_min": 90},
+    {"id": 6, "title": "Укладка", "price": 30, "duration_min": 45}
+  ],
+  "currency": "₾",
+  "masters": [
+    {"id": 1, "name": "Анна", "specialization": "парикмахер-стилист", "service_ids": [1, 2, 3, 6]},
+    {"id": 2, "name": "Нино", "specialization": "парикмахер", "service_ids": [1, 2, 6]},
+    {"id": 3, "name": "Мария", "specialization": "мастер ногтевого сервиса", "service_ids": [4, 5]}
+  ]
+}

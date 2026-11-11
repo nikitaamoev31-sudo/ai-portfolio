@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: job-tracker-api
+  datasource:
+    # По умолчанию — встроенная H2 (запуск без установки БД).
+    url: jdbc:h2:mem:jobtracker
+    username: sa
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+
+---
+spring:
+  config:
+    activate:
+      on-profile: postgres
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/jobtracker}
+    username: ${DB_USER:jobtracker}
+    password: ${DB_PASSWORD:jobtracker}

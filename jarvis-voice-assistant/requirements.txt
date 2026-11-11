@@ -1,0 +1,6 @@
+anthropic
+SpeechRecognition
+pyaudio
+pyautogui
+edge-tts
+num2words
