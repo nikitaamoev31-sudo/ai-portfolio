@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Никита Амоев — техническая поддержка и AI-автоматизация</title>
-<meta name="description" content="Портфолио Никиты Амоева: техническая поддержка L1/L2 (SQL, API), AI-автоматизация, Junior Java/Python. Удалённо из Тбилиси.">
+<title>Никита Амоев — поддержка, AI-автоматизация, разработка, веб-дизайн</title>
+<meta name="description" content="Портфолио Никиты Амоева: техническая поддержка (SQL, API), AI-автоматизация (n8n, LLM), Java/Python-разработка, веб-дизайн и вёрстка. Удалённо из Тбилиси.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;800&family=Unbounded:wght@600;700&display=swap" rel="stylesheet">
@@ -18,41 +18,43 @@
     --muted: #55607F;
     --line: #D6DCEE;
     --amber: #FFB020;
-    --support: #0E9F6E; --support-tint: #DCF7EC; --support-ink: #08664A;
-    --ai: #7C3AED;      --ai-tint: #EFE7FF;      --ai-ink: #5B21B6;
-    --dev: #1F6FEB;     --dev-tint: #E3EEFF;     --dev-ink: #1550B8;
+    --support: #0E9F6E; --support-tint: #DCF7EC; --support-ink: #08664A; --support-chip: #8FE6C4;
+    --ai: #7C3AED;      --ai-tint: #EFE7FF;      --ai-ink: #5B21B6;      --ai-chip: #CDB6FF;
+    --dev: #1F6FEB;     --dev-tint: #E3EEFF;     --dev-ink: #1550B8;     --dev-chip: #A9C8FF;
+    --web: #E0457B;     --web-tint: #FDE6EE;     --web-ink: #A3164A;     --web-chip: #FFB3CC;
     --font: "Golos Text", system-ui, -apple-system, "Segoe UI", sans-serif;
     --display: "Unbounded", "Golos Text", system-ui, sans-serif;
+    --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
   }
   * { box-sizing: border-box; }
   html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
   body { margin: 0; background: var(--paper); color: var(--ink); font: 400 17px/1.6 var(--font); }
   a { color: inherit; text-underline-offset: 3px; }
   :focus-visible { outline: 3px solid var(--amber); outline-offset: 3px; border-radius: 4px; }
-  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
 
-  /* ---------- hero band ---------- */
+  /* направления: один цвет на каждое */
+  .support { --c: var(--support); --tint: var(--support-tint); --cink: var(--support-ink); --chip: var(--support-chip); }
+  .ai      { --c: var(--ai);      --tint: var(--ai-tint);      --cink: var(--ai-ink);      --chip: var(--ai-chip); }
+  .dev     { --c: var(--dev);     --tint: var(--dev-tint);     --cink: var(--dev-ink);     --chip: var(--dev-chip); }
+  .web     { --c: var(--web);     --tint: var(--web-tint);     --cink: var(--web-ink);     --chip: var(--web-chip); }
+
+  /* ---------- hero ---------- */
   .hero-band {
     background:
-      radial-gradient(600px 380px at 92% 8%, rgba(124, 58, 237, .55), transparent 70%),
-      radial-gradient(520px 360px at 70% 100%, rgba(14, 159, 110, .45), transparent 70%),
+      radial-gradient(560px 360px at 95% 5%, rgba(124, 58, 237, .55), transparent 70%),
+      radial-gradient(480px 340px at 62% 105%, rgba(14, 159, 110, .45), transparent 70%),
+      radial-gradient(420px 300px at 0% 100%, rgba(224, 69, 123, .35), transparent 70%),
       var(--indigo);
     color: #fff;
   }
-  .hero { padding: 80px 24px 88px; display: grid; grid-template-columns: 1fr 1.05fr; gap: 56px; align-items: center; }
-  .hero h1 { font: 700 52px/1.05 var(--display); margin: 0 0 22px; letter-spacing: -0.02em; }
-  .hero .lead { font-size: 20px; line-height: 1.5; margin: 0 0 22px; max-width: 30em; }
-  .facts { list-style: none; padding: 0; margin: 0 0 26px; color: var(--indigo-soft); }
+  .hero { padding: 72px 24px 84px; display: grid; grid-template-columns: 1fr 1.1fr; gap: 52px; align-items: start; }
+  .greeting { display: inline-block; margin: 0 0 18px; padding: 6px 14px; border-radius: 10px; background: rgba(255,255,255,.12); font-weight: 600; }
+  .greeting[hidden] { display: none; }
+  .hero h1 { font: 700 52px/1.05 var(--display); margin: 0 0 20px; letter-spacing: -0.02em; }
+  .hero .lead { font-size: 21px; line-height: 1.45; margin: 0 0 22px; max-width: 28em; }
+  .facts { list-style: none; padding: 0; margin: 0 0 30px; color: var(--indigo-soft); }
   .facts li { padding: 2px 0; }
-  .roles { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 30px; padding: 0; list-style: none; }
-  .roles a {
-    display: inline-block; padding: 6px 14px; border-radius: 999px; font-size: 15px; font-weight: 600;
-    text-decoration: none; color: var(--ink);
-  }
-  .roles .r-support a { background: #8FE6C4; }
-  .roles .r-ai a { background: #CDB6FF; }
-  .roles .r-dev a { background: #A9C8FF; }
-  .roles a:hover { filter: brightness(1.06); text-decoration: underline; }
   .actions { display: flex; flex-wrap: wrap; gap: 12px; }
   .btn { display: inline-block; padding: 13px 22px; border-radius: 10px; font-weight: 600; text-decoration: none; border: 2px solid transparent; }
   .btn-primary { background: var(--amber); color: var(--ink); }
@@ -60,77 +62,85 @@
   .btn-secondary { border-color: rgba(255,255,255,.7); color: #fff; }
   .btn-secondary:hover { background: rgba(255,255,255,.1); }
 
-  /* the ticket: the one memorable element */
-  .ticket { background: var(--surface); color: var(--ink); border-radius: 16px; overflow: hidden; box-shadow: 0 24px 60px rgba(10, 16, 60, .35); transform: rotate(-0.6deg); }
-  .ticket-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 14px 20px; border-bottom: 1px solid var(--line); font-size: 15px; }
-  .ticket-id { color: var(--muted); }
-  .ticket-title { font-weight: 600; }
-  .status { font-size: 14px; font-weight: 700; padding: 4px 12px; border-radius: 999px; white-space: nowrap; color: #7A4A00; background: #FFE7B3; transition: background .3s, color .3s; }
-  .status.is-resolved { color: var(--support-ink); background: var(--support-tint); }
-  .msg { padding: 18px 20px; font-size: 16px; }
-  .msg .who { font-size: 14px; color: var(--muted); margin-bottom: 4px; }
-  .msg p { margin: 0 0 8px; }
-  .msg p:last-child { margin-bottom: 0; }
-  .msg-reply { background: var(--support-tint); border-top: 3px solid var(--support); }
-  .msg-reply .who { color: var(--support-ink); font-weight: 600; }
-  .reply-anim { animation: reply-in 600ms ease-out 700ms both; }
-  @keyframes reply-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
-
-  .greeting { display: inline-block; margin: 0 0 18px; padding: 6px 14px; border-radius: 10px; background: rgba(255,255,255,.12); color: #fff; font-weight: 600; }
-  .greeting[hidden] { display: none; }
-  .ticket-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 14px; padding: 0; list-style: none; }
-  .ticket-tabs button {
-    font: 600 14px/1 var(--font); padding: 9px 12px; border-radius: 999px; cursor: pointer;
-    border: 1.5px solid rgba(255,255,255,.55); background: transparent; color: #fff;
+  /* демо-панель: главный запоминающийся элемент */
+  .demo-label { margin: 0 0 10px; color: var(--indigo-soft); font-size: 15px; }
+  .modes { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 0 0 14px; padding: 0; list-style: none; }
+  .modes button {
+    width: 100%; font: 600 14px/1.2 var(--font); padding: 10px 8px; border-radius: 12px; cursor: pointer;
+    border: 0; background: rgba(255,255,255,.1); color: #fff; border-bottom: 4px solid var(--c);
   }
-  .ticket-tabs button:hover { background: rgba(255,255,255,.12); }
-  .ticket-tabs button[aria-selected="true"] { background: #fff; color: var(--indigo); border-color: #fff; }
-  .hint { margin: 0 0 10px; color: var(--indigo-soft); font-size: 15px; }
-  .msg-check { background: #F7F8FC; border-top: 1px solid var(--line); }
-  .msg-check code { display: block; font: 13px/1.5 ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #3B4466; white-space: pre-wrap; margin: 4px 0 8px; }
-  .msg-check .found { font-weight: 600; }
-  .ticket-foot { padding: 12px 20px; border-top: 1px solid var(--line); font-size: 14px; }
-  .ticket-foot a { color: var(--dev-ink); font-weight: 600; }
+  .modes button:hover { background: rgba(255,255,255,.18); }
+  .modes button[aria-selected="true"] { background: var(--chip); color: var(--ink); }
+  .panel { background: var(--surface); color: var(--ink); border-radius: 16px; overflow: hidden; box-shadow: 0 24px 60px rgba(10, 16, 60, .35); border-top: 6px solid var(--c); }
+  .panel[hidden] { display: none; }
+  .panel-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 14px 20px; border-bottom: 1px solid var(--line); font-size: 15px; }
+  .panel-head .muted { color: var(--muted); }
+  .panel-head b { font-weight: 600; }
+  .status { font-size: 14px; font-weight: 700; padding: 4px 12px; border-radius: 999px; white-space: nowrap; color: #7A4A00; background: #FFE7B3; transition: background .3s, color .3s; }
+  .status.is-done { color: var(--cink); background: var(--tint); }
+  .block { padding: 16px 20px; font-size: 16px; }
+  .block + .block { border-top: 1px solid var(--line); }
+  .block .who { font-size: 14px; color: var(--muted); margin-bottom: 4px; }
+  .block p { margin: 0; }
+  .block code { display: block; font: 13px/1.55 var(--mono); color: #3B4466; white-space: pre-wrap; margin: 4px 0 8px; }
+  .block.result { background: var(--tint); }
+  .block.result .who { color: var(--cink); font-weight: 600; }
+  .panel-foot { padding: 12px 20px; border-top: 1px solid var(--line); font-size: 14px; }
+  .panel-foot a { color: var(--cink); font-weight: 600; }
+  .subtabs { display: flex; flex-wrap: wrap; gap: 6px; padding: 12px 20px 0; list-style: none; margin: 0; }
+  .subtabs button { font: 600 13px/1 var(--font); padding: 7px 10px; border-radius: 999px; cursor: pointer; border: 1.5px solid var(--line); background: #fff; color: var(--ink); }
+  .subtabs button[aria-selected="true"] { background: var(--tint); border-color: var(--c); color: var(--cink); }
+
+  /* поток n8n */
+  .flow { list-style: none; margin: 0; padding: 16px 20px; display: grid; gap: 8px; }
+  .flow li { display: grid; grid-template-columns: 28px 1fr; gap: 12px; align-items: start; padding: 10px 12px; border-radius: 12px; background: #F7F8FC; opacity: .35; transition: opacity .35s, background .35s; }
+  .flow li.on { opacity: 1; background: var(--tint); }
+  .flow .dot { width: 28px; height: 28px; border-radius: 50%; background: var(--c); color: #fff; font: 700 13px/28px var(--font); text-align: center; }
+  .flow b { display: block; font-weight: 600; }
+  .flow span { color: var(--muted); font-size: 15px; }
+
+  /* палитра для веб-дизайна */
+  .swatches { display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; margin: 8px 0 4px; }
+  .swatches i { height: 34px; border-radius: 8px; display: block; }
+  .type-sample { font: 700 28px/1.1 var(--display); margin: 6px 0 2px; }
+
+  .anim { animation: rise 500ms ease-out both; }
+  @keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+  /* ---------- секции ---------- */
+  section { padding: 64px 0 24px; }
+  h2 { font: 700 32px/1.2 var(--display); margin: 0 0 10px; letter-spacing: -0.01em; }
+  .section-intro { color: var(--muted); margin: 0 0 28px; max-width: 42em; }
 
   .proof { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 24px; }
   .proof div { background: var(--surface); border-radius: 18px; padding: 24px; }
-  .proof strong { display: block; font: 700 22px/1.25 var(--display); margin: 0 0 8px; color: var(--indigo); }
+  .proof strong { display: block; font: 700 21px/1.25 var(--display); margin: 0 0 8px; color: var(--indigo); }
   .proof p { margin: 0; color: var(--muted); }
 
-  /* ---------- sections ---------- */
-  section { padding: 64px 0 24px; }
-  h2 { font: 700 32px/1.2 var(--display); margin: 0 0 10px; letter-spacing: -0.01em; }
-  .section-intro { color: var(--muted); margin: 0 0 32px; max-width: 40em; }
-
-  .role { --c: var(--dev); --tint: var(--dev-tint); --cink: var(--dev-ink);
-    display: grid; grid-template-columns: 230px 1fr; gap: 32px; padding: 28px 32px; margin: 0 0 18px;
-    background: var(--surface); border-radius: 18px; border-left: 8px solid var(--c); }
-  .role.support { --c: var(--support); --tint: var(--support-tint); --cink: var(--support-ink); }
-  .role.ai { --c: var(--ai); --tint: var(--ai-tint); --cink: var(--ai-ink); }
+  .role { display: grid; grid-template-columns: 230px 1fr; gap: 32px; padding: 28px 32px; margin: 0 0 18px; background: var(--surface); border-radius: 18px; border-left: 8px solid var(--c); }
   .role h3 { font: 700 20px/1.3 var(--display); margin: 0; color: var(--cink); }
   .role .why { display: inline-block; margin: 10px 0 0; padding: 4px 10px; border-radius: 8px; font-size: 14px; background: var(--tint); color: var(--cink); }
   .project { margin: 0 0 22px; }
   .project:last-child { margin-bottom: 0; }
   .project h4 { font-size: 19px; margin: 0 0 4px; font-weight: 600; }
   .project h4 a { color: var(--cink); }
-  .project p { margin: 0 0 6px; max-width: 42em; }
+  .project p { margin: 0 0 6px; max-width: 44em; }
   .stack { color: var(--muted); font-size: 15px; }
 
   .timeline { list-style: none; margin: 0; padding: 0; }
-  .timeline li { display: grid; grid-template-columns: 230px 1fr; gap: 32px; padding: 20px 0 20px 0; position: relative; }
+  .timeline li { display: grid; grid-template-columns: 230px 1fr; gap: 32px; padding: 20px 0; }
   .timeline li + li { border-top: 1px solid var(--line); }
   .when { color: var(--muted); display: flex; align-items: baseline; gap: 10px; }
-  .when::before { content: ""; width: 12px; height: 12px; border-radius: 50%; background: var(--dot); flex: none; transform: translateY(1px); }
+  .when::before { content: ""; width: 12px; height: 12px; border-radius: 50%; background: var(--c); flex: none; transform: translateY(1px); }
   .timeline h3 { font-size: 18px; margin: 0 0 4px; }
-  .timeline p { margin: 0; max-width: 42em; }
+  .timeline p { margin: 0; max-width: 44em; }
 
-  .skills { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 24px; }
-  .skill { background: var(--surface); border-radius: 18px; padding: 22px 24px; border-top: 6px solid var(--c); }
+  .skills { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 24px; }
+  .skill { background: var(--surface); border-radius: 18px; padding: 22px; border-top: 6px solid var(--c); }
   .skill h3 { font-size: 18px; margin: 0 0 8px; color: var(--cink); }
   .skill ul { margin: 0; padding-left: 18px; }
-  .skill.support { --c: var(--support); --cink: var(--support-ink); }
-  .skill.ai { --c: var(--ai); --cink: var(--ai-ink); }
-  .skill.dev { --c: var(--dev); --cink: var(--dev-ink); }
+  .learning { margin: 18px 0 0; padding: 16px 20px; border-radius: 14px; background: var(--surface); border: 2px dashed var(--line); color: var(--muted); }
+  .learning b { color: var(--ink); }
 
   .contact-band { margin-top: 64px; background: var(--indigo); color: #fff; }
   .contact-band section { padding: 56px 0; }
@@ -140,36 +150,37 @@
   .contact a { color: #fff; }
   footer { padding: 0 0 40px; color: var(--indigo-soft); font-size: 14px; }
 
-  @media (max-width: 860px) {
+  @media (max-width: 980px) {
     .hero { grid-template-columns: 1fr; gap: 44px; padding-top: 52px; padding-bottom: 64px; }
+    .skills { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 640px) {
     .hero h1 { font-size: 38px; }
-    .ticket { transform: none; }
+    .modes { grid-template-columns: repeat(2, 1fr); }
     .role, .timeline li { grid-template-columns: 1fr; gap: 10px; }
     .role { padding: 22px 20px; }
     .skills, .proof { grid-template-columns: 1fr; }
   }
   @media (prefers-reduced-motion: reduce) {
-    .reply-anim { animation: none; }
+    .anim { animation: none; }
+    .flow li { transition: none; }
     html { scroll-behavior: auto; }
   }
 </style>
 </head>
 <body>
+
 <header class="hero-band">
   <div class="wrap hero">
     <div>
       <p class="greeting" id="greeting" hidden></p>
       <h1>Никита Амоев</h1>
-      <p class="lead">Специалист технической поддержки и AI-автоматизации. Нахожу причину проблемы клиента в данных и логах, отвечаю простыми словами и автоматизирую то, что повторяется.</p>
+      <p class="lead">Закрываю задачу целиком: разберусь, что сломалось у клиента, автоматизирую рутину с помощью ИИ, напишу код и сделаю понятный интерфейс.</p>
       <ul class="facts">
         <li>Почти 2 года в B2B-поддержке Сбера</li>
-        <li>SQL, REST API, n8n, Python, Java</li>
+        <li>Фриланс: сайты, лендинги и базы данных</li>
+        <li>SQL · n8n · LLM API · Java · Python · Figma</li>
         <li>Тбилиси, удалённо по МСК или европейскому времени</li>
-      </ul>
-      <ul class="roles" aria-label="Направления">
-        <li class="r-support"><a href="#support">Техподдержка</a></li>
-        <li class="r-ai"><a href="#ai">AI-автоматизация</a></li>
-        <li class="r-dev"><a href="#dev">Разработка</a></li>
       </ul>
       <div class="actions">
         <a class="btn btn-primary" href="https://t.me/nikita_aaaak">Написать в Telegram</a>
@@ -178,27 +189,73 @@
     </div>
 
     <div>
-      <p class="hint">Выберите жалобу клиента — покажу, как я её разбираю:</p>
-      <ul class="ticket-tabs" role="tablist" aria-label="Примеры тикетов" id="tabs"></ul>
-      <article class="ticket" aria-live="polite">
-        <div class="ticket-head">
-          <div><span class="ticket-id" id="t-id"></span><span class="ticket-title" id="t-title"></span></div>
-          <span class="status" id="status">Открыт</span>
+      <p class="demo-label">Выберите направление — покажу, как я работаю:</p>
+      <ul class="modes" role="tablist" aria-label="Направления">
+        <li class="support"><button type="button" role="tab" data-mode="support">Поддержка</button></li>
+        <li class="ai"><button type="button" role="tab" data-mode="ai">AI-автоматизация</button></li>
+        <li class="dev"><button type="button" role="tab" data-mode="dev">Разработка</button></li>
+        <li class="web"><button type="button" role="tab" data-mode="web">Веб-дизайн</button></li>
+      </ul>
+
+      <!-- Поддержка -->
+      <article class="panel support" id="panel-support" role="tabpanel" aria-live="polite" hidden>
+        <ul class="subtabs" id="ticket-tabs" aria-label="Тикеты"></ul>
+        <div class="panel-head">
+          <div><span class="muted" id="t-id"></span><b id="t-title"></b></div>
+          <span class="status" id="t-status">Открыт</span>
         </div>
-        <div class="msg">
-          <div class="who" id="t-client"></div>
-          <p id="t-complaint"></p>
+        <div class="block"><div class="who" id="t-client"></div><p id="t-complaint"></p></div>
+        <div class="block"><div class="who">Проверка в базе</div><code id="t-sql"></code><p><b id="t-found"></b></p></div>
+        <div class="block result anim" id="t-reply-box"><div class="who">Никита, поддержка</div><p id="t-reply"></p></div>
+        <div class="panel-foot"><a id="t-link" href="#">Полный разбор с эскалацией в Jira</a></div>
+      </article>
+
+      <!-- AI-автоматизация -->
+      <article class="panel ai" id="panel-ai" role="tabpanel" hidden>
+        <div class="panel-head">
+          <div><span class="muted">n8n · </span><b>Новая заявка с сайта</b></div>
+          <span class="status" id="ai-status">В работе</span>
         </div>
-        <div class="msg msg-check">
-          <div class="who">Проверка в базе</div>
-          <code id="t-sql"></code>
-          <p class="found" id="t-found"></p>
+        <div class="block"><div class="who">Заявка</div><p>«Нужен чат-бот для интернет-магазина, бюджет 5000$» — Анна, Shop.ru</p></div>
+        <ol class="flow" id="flow">
+          <li><span class="dot">1</span><div><b>Webhook принял заявку</b><span>данные очищены и проверены</span></div></li>
+          <li><span class="dot">2</span><div><b>Gemini оценил лида</b><span>оценка 1–10, ниша, суть запроса, черновик ответа</span></div></li>
+          <li><span class="dot">3</span><div><b>Горячий лид?</b><span>оценка выше порога — да</span></div></li>
+          <li><span class="dot">4</span><div><b>Менеджеру в Telegram</b><span>уведомление и готовый черновик ответа клиенту</span></div></li>
+        </ol>
+        <div class="panel-foot"><a href="https://github.com/nikitaamoev31-sudo/ai-portfolio/tree/main/n8n-ai-lead-qualifier">Workflow и инструкция на GitHub</a></div>
+      </article>
+
+      <!-- Разработка -->
+      <article class="panel dev" id="panel-dev" role="tabpanel" hidden>
+        <div class="panel-head">
+          <div><span class="muted">Spring Boot · </span><b>Job Tracker API</b></div>
+          <span class="status is-done">7 тестов</span>
         </div>
-        <div class="msg msg-reply reply-anim" id="reply">
-          <div class="who">Никита, поддержка</div>
-          <p id="t-reply"></p>
+        <div class="block"><div class="who">Запрос</div>
+<code>POST /api/applications
+{ "company": "Gcore", "position": "Customer Support", "salaryUsd": 1100 }</code></div>
+        <div class="block"><div class="who">Валидация</div>
+<code>company, position — обязательные (@NotBlank)
+salaryUsd — не меньше нуля (@PositiveOrZero)</code></div>
+        <div class="block result"><div class="who">Что ещё умеет API</div><p>Смена статуса отклика, статистика по воронке, документация Swagger, запуск через Docker. Тесты JUnit и Mockito прогоняются автоматически при каждом изменении.</p></div>
+        <div class="panel-foot"><a href="https://github.com/nikitaamoev31-sudo/ai-portfolio/tree/main/job-tracker-api">Код на GitHub</a></div>
+      </article>
+
+      <!-- Веб-дизайн -->
+      <article class="panel web" id="panel-web" role="tabpanel" hidden>
+        <div class="panel-head">
+          <div><span class="muted">Figma → HTML/CSS · </span><b>Этот сайт</b></div>
+          <span class="status is-done">Сделан с нуля</span>
         </div>
-        <div class="ticket-foot"><a id="t-link" href="#">Полный разбор с эскалацией в Jira</a></div>
+        <div class="block"><div class="who">Палитра: у каждого направления свой цвет</div>
+          <div class="swatches" aria-hidden="true">
+            <i style="background:#1E2A78"></i><i style="background:#0E9F6E"></i><i style="background:#7C3AED"></i><i style="background:#1F6FEB"></i><i style="background:#E0457B"></i><i style="background:#FFB020"></i>
+          </div>
+        </div>
+        <div class="block"><div class="who">Шрифты: Unbounded для заголовков, Golos Text для текста</div><p class="type-sample">Аа Бб 123</p></div>
+        <div class="block result"><div class="who">Что внутри</div><p>Без шаблонов и конструкторов: адаптив под телефон, интерактивные демо, доступность (контраст, клавиатура, reduced motion). На фрилансе так же делаю лендинги под ключ — от макета до публикации.</p></div>
+        <div class="panel-foot"><a href="https://github.com/nikitaamoev31-sudo/ai-portfolio/blob/main/docs/index.html">Исходный код страницы</a></div>
       </article>
     </div>
   </div>
@@ -210,29 +267,26 @@
     <h2 id="why-title">Почему стоит позвать меня на собеседование</h2>
     <div class="proof">
       <div>
+        <strong>Четыре навыка в одном человеке</strong>
+        <p>Поддержка, автоматизация, код и дизайн: могу сам пройти путь от жалобы клиента до готового исправления и понятного интерфейса.</p>
+      </div>
+      <div>
         <strong>Почти 2 года с реальными клиентами</strong>
         <p>B2B-поддержка в Сбере: консультации, обращения до решения, CRM, передача задач в смежные отделы.</p>
       </div>
       <div>
-        <strong>Код, который можно проверить</strong>
-        <p>7 проектов на GitHub, у трёх — автотесты, которые запускаются при каждом изменении.</p>
-      </div>
-      <div>
-        <strong>Удобный график</strong>
-        <p>Работаю удалённо из Тбилиси по МСК или европейскому времени, готов к сменному графику.</p>
+        <strong>Работу можно проверить</strong>
+        <p>7 проектов на GitHub с открытым кодом, у трёх — автотесты, которые запускаются при каждом изменении.</p>
       </div>
     </div>
   </section>
 
   <section id="projects" aria-labelledby="projects-title">
     <h2 id="projects-title">Проекты</h2>
-    <p class="section-intro">Каждый проект закрывает задачу из реальной работы. Код, тесты и инструкции по запуску — в репозитории.</p>
+    <p class="section-intro">Каждый проект закрывает задачу из реальной работы. Код и инструкции по запуску — в репозитории.</p>
 
     <div class="role support" id="support">
-      <div>
-        <h3>Техническая поддержка</h3>
-        <p class="why">Разбор тикетов, SQL, API, эскалации</p>
-      </div>
+      <div><h3>Техническая поддержка</h3><p class="why">SQL, API, тикеты, эскалации</p></div>
       <div>
         <div class="project">
           <h4><a href="https://github.com/nikitaamoev31-sudo/ai-portfolio/tree/main/support-sql-toolkit">Support SQL Toolkit</a></h4>
@@ -248,20 +302,22 @@
     </div>
 
     <div class="role ai" id="ai">
-      <div>
-        <h3>AI-автоматизация</h3>
-        <p class="why">n8n, LLM, интеграции API</p>
-      </div>
+      <div><h3>AI-автоматизация</h3><p class="why">n8n, LLM, интеграции API</p></div>
       <div>
         <div class="project">
           <h4><a href="https://github.com/nikitaamoev31-sudo/ai-portfolio/tree/main/n8n-ai-lead-qualifier">n8n AI Lead Qualifier</a></h4>
           <p>Заявка с сайта автоматически оценивается нейросетью, горячие лиды сразу приходят менеджеру в Telegram вместе с черновиком ответа.</p>
-          <p class="stack">n8n · Gemini · Telegram · вебхуки</p>
+          <p class="stack">n8n · Gemini · Telegram · вебхуки · JavaScript</p>
         </div>
         <div class="project">
           <h4><a href="https://github.com/nikitaamoev31-sudo/ai-portfolio/tree/main/ai-salon-admin">AI Salon Admin</a></h4>
           <p>Telegram-бот администратора салона: отвечает на вопросы, записывает, переносит и напоминает о визите.</p>
           <p class="stack">Python · LLM · Telegram Bot API · YCLIENTS</p>
+        </div>
+        <div class="project">
+          <h4><a href="https://github.com/nikitaamoev31-sudo/ai-portfolio/tree/main/ai-sales-agent">AI Sales Agent</a></h4>
+          <p>Агент изучает сайты компаний, находит, где им пригодится ИИ, и пишет персональные письма.</p>
+          <p class="stack">Python · LLM · парсинг сайтов · Docker</p>
         </div>
         <div class="project">
           <h4><a href="https://github.com/nikitaamoev31-sudo/ai-portfolio/tree/main/jarvis-voice-assistant">Jarvis Voice Assistant</a></h4>
@@ -272,15 +328,33 @@
     </div>
 
     <div class="role dev" id="dev">
-      <div>
-        <h3>Разработка</h3>
-        <p class="why">Java и Python, тесты, CI</p>
-      </div>
+      <div><h3>Разработка и тестирование</h3><p class="why">Java, Python, тесты, CI</p></div>
       <div>
         <div class="project">
           <h4><a href="https://github.com/nikitaamoev31-sudo/ai-portfolio/tree/main/job-tracker-api">Job Tracker API</a></h4>
           <p>REST API для учёта откликов на вакансии: статусы, статистика, валидация, документация Swagger.</p>
           <p class="stack">Java 17 · Spring Boot 3 · PostgreSQL · JUnit, Mockito · Docker</p>
+        </div>
+        <div class="project">
+          <h4><a href="https://github.com/nikitaamoev31-sudo/ai-portfolio/actions/workflows/ci.yml">Автотесты и CI</a></h4>
+          <p>Тесты трёх проектов (JUnit, pytest и проверки SQL-запросов на реальной PostgreSQL) запускаются в GitHub Actions при каждом изменении кода.</p>
+          <p class="stack">GitHub Actions · JUnit · Mockito · pytest · Docker Compose</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="role web" id="web">
+      <div><h3>Веб-дизайн и вёрстка</h3><p class="why">Figma, HTML, CSS, JS</p></div>
+      <div>
+        <div class="project">
+          <h4><a href="https://github.com/nikitaamoev31-sudo/ai-portfolio/blob/main/docs/index.html">Этот сайт-портфолио</a></h4>
+          <p>Спроектирован и свёрстан с нуля, без шаблонов: своя палитра под каждое направление, интерактивные демо, адаптив под телефон, доступность.</p>
+          <p class="stack">HTML · CSS · JavaScript · GitHub Pages</p>
+        </div>
+        <div class="project">
+          <h4>Сайты и лендинги на фрилансе</h4>
+          <p>С 2025 года делаю сайты для частных клиентов и малого бизнеса: дизайн, вёрстка, публикация, правки по обратной связи.</p>
+          <p class="stack">Figma · Canva · HTML · CSS</p>
         </div>
       </div>
     </div>
@@ -289,21 +363,28 @@
   <section id="experience" aria-labelledby="experience-title">
     <h2 id="experience-title">Опыт</h2>
     <ol class="timeline">
-      <li style="--dot: var(--support)">
+      <li class="support">
         <div class="when">Сен 2024 — июнь 2026</div>
         <div>
           <h3>Сбер, специалист по сопровождению B2B-клиентов</h3>
           <p>Консультировал корпоративных клиентов по продуктам, разбирал обращения до решения, вёл историю в CRM и внутренних системах, передавал задачи в смежные отделы.</p>
         </div>
       </li>
-      <li style="--dot: var(--amber)">
+      <li class="web">
         <div class="when">Янв 2025 — окт 2026</div>
         <div>
           <h3>Фриланс, веб-разработчик (частичная занятость)</h3>
           <p>Сайты и лендинги под ключ: дизайн, вёрстка, публикация. Таблицы и структура баз данных, SQL-запросы под задачи клиента.</p>
         </div>
       </li>
-      <li style="--dot: var(--dev)">
+      <li class="ai">
+        <div class="when">2026</div>
+        <div>
+          <h3>Свои проекты: AI-агенты и автоматизация</h3>
+          <p>Telegram-боты, n8n-воркфлоу, RAG-ассистент и голосовой ассистент на LLM — код на GitHub.</p>
+        </div>
+      </li>
+      <li class="dev">
         <div class="when">До 2027</div>
         <div>
           <h3>Цифровой колледж Skillbox, Java-разработчик</h3>
@@ -319,7 +400,7 @@
       <div class="skill support">
         <h3>Поддержка</h3>
         <ul>
-          <li>Работа с обращениями и деловая переписка</li>
+          <li>Обращения клиентов и деловая переписка</li>
           <li>SQL и PostgreSQL</li>
           <li>REST API, Postman, логи</li>
           <li>CRM, Jira, эскалации</li>
@@ -328,57 +409,69 @@
       <div class="skill ai">
         <h3>Автоматизация</h3>
         <ul>
-          <li>n8n, вебхуки, интеграции</li>
+          <li>n8n, Make, Zapier</li>
           <li>LLM API, RAG, промпты</li>
-          <li>Telegram-боты</li>
+          <li>Telegram-боты, вебхуки</li>
+          <li>AI-ассистенты для разработки</li>
         </ul>
       </div>
       <div class="skill dev">
-        <h3>Разработка</h3>
+        <h3>Разработка и QA</h3>
         <ul>
-          <li>Java, Spring Boot</li>
-          <li>Python, FastAPI, pytest</li>
+          <li>Java, Spring Boot, REST</li>
+          <li>Python, FastAPI</li>
+          <li>JUnit, Mockito, pytest</li>
           <li>Git, Docker, GitHub Actions</li>
-          <li>HTML, CSS, Figma</li>
+        </ul>
+      </div>
+      <div class="skill web">
+        <h3>Веб-дизайн</h3>
+        <ul>
+          <li>Figma, Canva</li>
+          <li>HTML, CSS, JavaScript</li>
+          <li>Адаптивная вёрстка</li>
+          <li>Лендинги под ключ</li>
         </ul>
       </div>
     </div>
+    <p class="learning"><b>Сейчас изучаю:</b> веб-безопасность — уязвимости веб-приложений на PortSwigger и TryHackMe.</p>
   </section>
-
-
 
 </main>
 
 <div class="contact-band">
   <div class="wrap">
-  <section id="contact" aria-labelledby="contact-title">
-    <h2 id="contact-title">Контакты</h2>
-    <p class="section-intro">Русский — родной, английский — B1.</p>
-    <div class="contact">
-      <div><span>Telegram</span><a href="https://t.me/nikita_aaaak">@nikita_aaaak</a></div>
-      <div><span>Почта</span><a href="mailto:nikitaamoev31@gmail.com">nikitaamoev31@gmail.com</a></div>
-      <div><span>GitHub</span><a href="https://github.com/nikitaamoev31-sudo">nikitaamoev31-sudo</a></div>
-    </div>
-  </section>
+    <section id="contact" aria-labelledby="contact-title">
+      <h2 id="contact-title">Контакты</h2>
+      <p class="section-intro">Русский — родной, английский — B1.</p>
+      <div class="contact">
+        <div><span>Telegram</span><a href="https://t.me/nikita_aaaak">@nikita_aaaak</a></div>
+        <div><span>Почта</span><a href="mailto:nikitaamoev31@gmail.com">nikitaamoev31@gmail.com</a></div>
+        <div><span>GitHub</span><a href="https://github.com/nikitaamoev31-sudo">nikitaamoev31-sudo</a></div>
+      </div>
+    </section>
     <footer>Никита Амоев, 2026</footer>
   </div>
 </div>
 
 <script>
-  // Персональное приветствие: ссылка вида ?to=Gcore&role=Customer%20Support
   (function () {
     var q = new URLSearchParams(location.search);
-    var to = (q.get('to') || '').slice(0, 60), role = (q.get('role') || '').slice(0, 80);
-    if (!to) return;
-    var g = document.getElementById('greeting');
-    g.textContent = role ? to + ', это портфолио для вакансии «' + role + '»' : 'Здравствуйте, ' + to + '!';
-    g.hidden = false;
-  })();
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // Интерактивный тикет: данные из support-sql-toolkit/cases
-  (function () {
+    // Персональное приветствие: ?to=Gcore&role=Customer%20Support&focus=support|ai|dev|web
+    var to = (q.get('to') || '').slice(0, 60), role = (q.get('role') || '').slice(0, 80);
+    if (to) {
+      var g = document.getElementById('greeting');
+      g.textContent = role ? to + ', это портфолио для вакансии «' + role + '»' : 'Здравствуйте, ' + to + '!';
+      g.hidden = false;
+    }
+
+    function restart(el, cls) { el.classList.remove(cls); void el.offsetWidth; el.classList.add(cls); }
+
+    // Тикеты поддержки: данные из support-sql-toolkit/cases
     var base = 'https://github.com/nikitaamoev31-sudo/ai-portfolio/blob/main/support-sql-toolkit/cases/';
-    var cases = [
+    var tickets = [
       { tab: 'Двойное списание', id: '#121', title: 'Списали деньги два раза', client: 'Клиент, барбершоп',
         complaint: 'Сегодня с карты списали оплату за тариф два раза. Верните, пожалуйста, лишнее.',
         sql: 'payments p1 JOIN payments p2 — та же сумма, оба succeeded, интервал < 10 мин',
@@ -404,27 +497,52 @@
         reply: 'С 14:00 у части клиентов не создавались онлайн-записи — это сбой на нашей стороне, ваши настройки в порядке. Разработка уже исправляет, я сообщу, как только всё заработает.',
         file: '04-api-500-incident.md' }
     ];
-    var tabs = document.getElementById('tabs'), status = document.getElementById('status'), reply = document.getElementById('reply');
-    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches, timer;
+    var tTabs = document.getElementById('ticket-tabs'), tStatus = document.getElementById('t-status'), tTimer;
     function set(id, text) { document.getElementById(id).textContent = text; }
-    function show(i) {
-      var c = cases[i];
-      set('t-id', 'Тикет ' + c.id + ' · '); set('t-title', c.title); set('t-client', c.client);
-      set('t-complaint', c.complaint); set('t-sql', c.sql); set('t-found', c.found); set('t-reply', c.reply);
-      document.getElementById('t-link').href = base + c.file;
-      [].forEach.call(tabs.querySelectorAll('button'), function (b, j) { b.setAttribute('aria-selected', j === i ? 'true' : 'false'); });
-      clearTimeout(timer);
-      status.textContent = 'Открыт'; status.classList.remove('is-resolved');
-      reply.classList.remove('reply-anim'); void reply.offsetWidth; reply.classList.add('reply-anim');
-      timer = setTimeout(function () { status.textContent = 'Решено'; status.classList.add('is-resolved'); }, reduce ? 0 : 1400);
+    function showTicket(i) {
+      var t = tickets[i];
+      set('t-id', 'Тикет ' + t.id + ' · '); set('t-title', t.title); set('t-client', t.client);
+      set('t-complaint', t.complaint); set('t-sql', t.sql); set('t-found', t.found); set('t-reply', t.reply);
+      document.getElementById('t-link').href = base + t.file;
+      [].forEach.call(tTabs.querySelectorAll('button'), function (b, j) { b.setAttribute('aria-selected', j === i ? 'true' : 'false'); });
+      clearTimeout(tTimer);
+      tStatus.textContent = 'Открыт'; tStatus.classList.remove('is-done');
+      restart(document.getElementById('t-reply-box'), 'anim');
+      tTimer = setTimeout(function () { tStatus.textContent = 'Решено'; tStatus.classList.add('is-done'); }, reduce ? 0 : 1200);
     }
-    cases.forEach(function (c, i) {
+    tickets.forEach(function (t, i) {
       var li = document.createElement('li'), b = document.createElement('button');
-      b.type = 'button'; b.setAttribute('role', 'tab'); b.textContent = c.tab;
-      b.addEventListener('click', function () { show(i); });
-      li.appendChild(b); tabs.appendChild(li);
+      b.type = 'button'; b.textContent = t.tab;
+      b.addEventListener('click', function () { showTicket(i); });
+      li.appendChild(b); tTabs.appendChild(li);
     });
-    show(0);
+
+    // Поток n8n: шаги загораются по очереди
+    var flowTimers = [];
+    function runFlow() {
+      var steps = document.querySelectorAll('#flow li'), st = document.getElementById('ai-status');
+      flowTimers.forEach(clearTimeout); flowTimers = [];
+      st.textContent = 'В работе'; st.classList.remove('is-done');
+      [].forEach.call(steps, function (li, i) {
+        li.classList.toggle('on', reduce);
+        if (!reduce) flowTimers.push(setTimeout(function () { li.classList.add('on'); }, 350 + i * 550));
+      });
+      flowTimers.push(setTimeout(function () { st.textContent = 'Лид отправлен'; st.classList.add('is-done'); }, reduce ? 0 : 350 + steps.length * 550));
+    }
+
+    // Переключение направлений
+    var modes = ['support', 'ai', 'dev', 'web'];
+    function showMode(m) {
+      modes.forEach(function (x) { document.getElementById('panel-' + x).hidden = x !== m; });
+      [].forEach.call(document.querySelectorAll('.modes button'), function (b) { b.setAttribute('aria-selected', b.dataset.mode === m ? 'true' : 'false'); });
+      if (m === 'support') showTicket(0);
+      if (m === 'ai') runFlow();
+    }
+    [].forEach.call(document.querySelectorAll('.modes button'), function (b) {
+      b.addEventListener('click', function () { showMode(b.dataset.mode); });
+    });
+    var focus = q.get('focus');
+    showMode(modes.indexOf(focus) >= 0 ? focus : 'support');
   })();
 </script>
 </body>

@@ -51,4 +51,3 @@ curl localhost:8080/api/applications/stats
 ```
 
 ---
-Разработано с использованием AI-ассистента (Claude Code).
