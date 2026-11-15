@@ -35,3 +35,46 @@ jobs:
         run: pip install -r requirements.txt
       - name: Run tests
         run: pytest -q
+
+  sql-support-toolkit:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: support-sql-toolkit
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: helpdesk
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres"
+          --health-interval 5s
+          --health-retries 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Seed is up to date with generator
+        run: python db/gen_seed.py | diff - db/seed.sql
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Run tests
+        env:
+          DATABASE_URL: postgresql://postgres:postgres@localhost:5432/helpdesk
+        run: pytest -q
+
+  sql-support-toolkit-compose:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: support-sql-toolkit
+    steps:
+      - uses: actions/checkout@v4
+      - name: Commands from README work
+        run: |
+          docker compose up -d --wait
+          docker compose exec -T db psql -U postgres -d helpdesk -v ON_ERROR_STOP=1 -f /queries/01_double_charges.sql | grep pay_990002

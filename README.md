@@ -2,18 +2,20 @@
 
 [![CI](https://github.com/nikitaamoev31-sudo/ai-portfolio/actions/workflows/ci.yml/badge.svg)](https://github.com/nikitaamoev31-sudo/ai-portfolio/actions/workflows/ci.yml)
 
-**AI Automation Engineer / Junior Java Developer** · Tbilisi · Remote (MSK / EU time)
+**Tech Support Engineer (L1/L2) · AI Automation · Junior Java/Python** · Tbilisi · Remote (MSK / EU time)
 
 I build AI agents that replace manual work: lead generation, sales outreach, customer support, computer control.
 
 ## 🔧 Stack
 **AI:** LLM APIs (Gemini, OpenAI, Claude), RAG, embeddings, tool calling, prompt engineering, AI agents
 **Code:** Python, Java (Spring Boot, REST API), JavaScript/TypeScript, SQL/PostgreSQL
+**Support:** ticket investigation with SQL, REST API & Postman, logs, SLA/CSAT reporting, customer communication, Jira escalations
 **Automation:** n8n, Make, Zapier, Telegram bots, REST APIs, webhooks, Docker, Git
 
 ## 🚀 Projects
 | Project | What it does |
 |---|---|
+| [support-sql-toolkit](./support-sql-toolkit) | Tech support L1/L2 cases in SQL: double charges, failed renewals, lockouts, 500 incidents → customer replies and Jira escalations; PostgreSQL, pytest, Docker |
 | [ai-sales-agent](./ai-sales-agent) | Scrapes company sites, finds where AI fits their business, writes personalized cold emails, sends via Instantly |
 | [ai-salon-admin](./ai-salon-admin) | Telegram bot — AI receptionist for a beauty salon: answers, books, reschedules, reminds, YCLIENTS integration |
 | [jarvis-voice-assistant](./jarvis-voice-assistant) | Voice AI assistant that controls macOS: tools, vision, memory, self-learning |

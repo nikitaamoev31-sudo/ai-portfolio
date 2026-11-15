@@ -1,0 +1,16 @@
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: helpdesk
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./db/schema.sql:/docker-entrypoint-initdb.d/01_schema.sql:ro
+      - ./db/seed.sql:/docker-entrypoint-initdb.d/02_seed.sql:ro
+      - ./queries:/queries:ro
+    healthcheck:
+      test: ["CMD-SHELL", "psql -U postgres -d helpdesk -c 'SELECT 1 FROM helpdesk.tickets LIMIT 1'"]
+      interval: 3s
+      retries: 20
