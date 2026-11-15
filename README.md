@@ -4,6 +4,8 @@
 
 **Tech Support Engineer (L1/L2) · AI Automation · Junior Java/Python** · Tbilisi · Remote (MSK / EU time)
 
+🌐 **Portfolio site:** https://nikitaamoev31-sudo.github.io/ai-portfolio/
+
 I build AI agents that replace manual work: lead generation, sales outreach, customer support, computer control.
 
 ## 🔧 Stack
