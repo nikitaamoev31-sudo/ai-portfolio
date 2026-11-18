@@ -1,8 +1,6 @@
-import os
 from dotenv import load_dotenv
 load_dotenv()
 
-import os
 import pandas as pd
 import requests
 from bs4 import BeautifulSoup
@@ -94,9 +92,9 @@ print(f"✅ Готово к обработке компаний: {len(real_leads
 final_results = []
 
 for lead in real_leads:
-    print(f"\n==================================================")
+    print("\n==================================================")
     print(f"🤖 ИИ АНАЛИЗИРУЕТ РЕАЛЬНЫЙ БИЗНЕС: {lead['company_name']}")
-    print(f"==================================================")
+    print("==================================================")
     
     print(f"[Парсер] Сканирую сайт: {lead['website']} ...")
     site_text = get_site_content(lead['website'])

@@ -1,6 +1,9 @@
-anthropic
+# Голос, экран, лицо
 SpeechRecognition
-pyaudio
+pyaudio            # macOS: сначала `brew install portaudio`
 pyautogui
+PyQt6
 edge-tts
 num2words
+# Мозг Claude (необязательно, если JARVIS_BRAIN=gemini)
+anthropic

@@ -16,7 +16,7 @@
 ## Быстрый старт (5 минут)
 
 ```bash
-cd ai_salon_admin
+cd ai-salon-admin
 python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 cp .env.example .env

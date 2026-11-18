@@ -1,8 +1,6 @@
-import os
 from dotenv import load_dotenv
 load_dotenv()
 
-import os
 import pandas as pd
 import requests
 from bs4 import BeautifulSoup
@@ -52,9 +50,9 @@ def query_local_llm(prompt):
 final_results = []
 
 for lead in test_leads:
-    print(f"\n==================================================")
+    print("\n==================================================")
     print(f"🤖 AI SALES AGENT PROCESSING: {lead['company_name']}")
-    print(f"==================================================")
+    print("==================================================")
     
     print("[Parser] Scraping potential client's website...")
     site_text = get_site_content(lead['website'])

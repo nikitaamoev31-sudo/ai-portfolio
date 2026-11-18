@@ -78,3 +78,20 @@ jobs:
         run: |
           docker compose up -d --wait
           docker compose exec -T db psql -U postgres -d helpdesk -v ON_ERROR_STOP=1 -f /queries/01_double_charges.sql | grep pay_990002
+
+  python-jarvis-voice-assistant:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: jarvis-voice-assistant
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install test dependencies
+        run: pip install -r requirements-dev.txt pyflakes
+      - name: Lint
+        run: python -m pyflakes jarvis.py tests
+      - name: Run offline tests
+        run: pytest -q

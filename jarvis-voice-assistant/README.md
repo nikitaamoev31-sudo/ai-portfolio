@@ -15,10 +15,21 @@ Voice assistant inspired by Iron Man's JARVIS: talks on any topic and **controls
 ## Stack
 Python · Anthropic API · Gemini API · function/tool calling · speech recognition · TTS · pyautogui · AppleScript · multithreading / asyncio
 
-## Run
+## Run (macOS)
 ```bash
+brew install portaudio                       # needed for the microphone (pyaudio)
+python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
-cp .env.example .env     # add API keys
-python3 jarvis.py         # voice + face
-python3 jarvis.py --text  # text mode
+cp .env.example .env                         # add GEMINI_API_KEY (free) or ANTHROPIC_API_KEY
+python3 jarvis.py                            # voice + face
+python3 jarvis.py --text                     # text mode for debugging
 ```
+macOS permissions for Terminal: **Microphone**, **Screen Recording** (for `look_at_screen`) and **Accessibility** (for clicks and typing).
+
+## Tests
+Offline tests — no microphone, screen or API keys needed (the LLM is mocked):
+```bash
+pip install -r requirements-dev.txt
+pytest -q
+```
+They cover wake-word parsing, the dangerous-command guard, tool schemas for Gemini, screenshot hand-off, speech cleanup and error handling (API limit, bad key, no internet are always spoken aloud instead of silent failure).

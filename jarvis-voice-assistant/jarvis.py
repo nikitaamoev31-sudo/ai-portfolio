@@ -37,7 +37,10 @@ def load_env():
 
 load_env()
 
-import anthropic  # noqa: E402
+try:
+    import anthropic  # noqa: E402  # нужен только для мозга Claude
+except ImportError:
+    anthropic = None
 
 MODEL = os.environ.get("JARVIS_MODEL", "claude-sonnet-5-5")         # для задач и управления Mac
 FAST_MODEL = os.environ.get("JARVIS_FAST_MODEL", "claude-haiku-5-5")  # для разговора — в разы быстрее
@@ -51,7 +54,11 @@ WAKE_WORDS = ["джарвис", "джарвиз", "жарвис", "джавис"
 CONVERSATION_WINDOW = 25  # сек: после ответа можно говорить без слова «Джарвис»
 MAX_HISTORY = 12          # сколько последних реплик помнить
 
-client = anthropic.Anthropic(api_key=os.environ.get("ANTHROPIC_API_KEY"))
+client = anthropic.Anthropic(api_key=os.environ.get("ANTHROPIC_API_KEY")) if anthropic else None
+
+
+class ErrorReply(str):
+    """Сообщение об ошибке мозга: think() возвращает его, а handle() обязательно озвучивает."""
 
 
 # ---------- ПАМЯТЬ ----------
@@ -772,7 +779,7 @@ def _task_listener():
 
 # ---------- УРОКИ ----------
 def llm_text(prompt, max_tokens=600):
-    if os.environ.get("JARVIS_BRAIN", "gemini").lower() == "claude":
+    if BRAIN == "claude":
         r = client.messages.create(model=MODEL, max_tokens=max_tokens, messages=[{"role": "user", "content": prompt}])
         return "".join(b.text for b in r.content if b.type == "text")
     return gemini_text(prompt)
@@ -798,7 +805,7 @@ def reflect_on_task(user_text, actions, result):
                 "долгие ожидания. Сформулируй 1–3 КОНКРЕТНЫХ урока на будущее (что делать иначе, чтобы быстрее и без "
                 "ошибок). Не повторяй уже известные уроки. Если уроков нет — ответь «нет». Каждый урок — с новой строки, "
                 "начинай с «- ».\n\n"
-                f"ИЗВЕСТНЫЕ УРОКИ:\n" + "\n".join(memory.get("lessons", [])) +
+                "ИЗВЕСТНЫЕ УРОКИ:\n" + "\n".join(memory.get("lessons", [])) +
                 f"\n\nЗАДАЧА: {user_text}\nДЕЙСТВИЯ ({len(actions)}):\n" + "\n".join(actions[-80:]) +
                 f"\n\nИТОГ: {result}")
         text = llm_text(prompt, 500)
@@ -814,7 +821,6 @@ def reflect_on_task(user_text, actions, result):
 def system_prompt():
     prefs = memory["user_preferences"]
     facts = "\n".join(f"- {k}: {v}" for k, v in memory["facts"].items()) or "- (пока пусто)"
-    now = datetime.now().strftime("%A, %d.%m.%Y, %H:%M")
     summary = memory.get("summary") or "(пока пусто)"
     return f"""Ты — Джарвис, персональный ИИ-ассистент {prefs['name']} в духе J.A.R.V.I.S. из «Железного человека».
 Ты работаешь на его MacBook (macOS) и можешь управлять им через инструменты.
@@ -1002,12 +1008,12 @@ def think_claude(user_text):
             trace(f"API-ERROR {e}")
             face.set("sad")
             if isinstance(e, anthropic.APIConnectionError):
-                return "Сэр, нет связи с облачным ядром. Проверьте интернет."
+                return ErrorReply("Сэр, нет связи с облачным ядром. Проверьте интернет.")
             if "credit balance" in str(e):
-                return "Сэр, на счёте Anthropic закончились средства. Пополните баланс, и я продолжу."
+                return ErrorReply("Сэр, на счёте Anthropic закончились средства. Пополните баланс, и я продолжу.")
             if getattr(e, "status_code", 0) in (401, 403):
-                return "Сэр, ключ API не принят. Проверьте его в файле настроек."
-            return "Сэр, произошёл внутренний сбой при обработке запроса. Повторите, пожалуйста."
+                return ErrorReply("Сэр, ключ API не принят. Проверьте его в файле настроек.")
+            return ErrorReply("Сэр, произошёл внутренний сбой при обработке запроса. Повторите, пожалуйста.")
         if buf.strip():
             step_text.append(buf.strip())
             if live:
@@ -1225,10 +1231,12 @@ def think_gemini(user_text):
             print(f"❌ Gemini: {e}")
             face.set("sad")
             if "HTTP 429" in str(e):
-                return "Сэр, на сегодня бесплатный лимит запросов исчерпан. Попробуйте позже."
-            if "HTTP 400" in str(e) and "API key" in str(e) or "HTTP 403" in str(e):
-                return "Сэр, ключ Gemini не принят. Проверьте его в файле настроек."
-            return "Сэр, произошёл внутренний сбой при обработке запроса. Повторите, пожалуйста."
+                return ErrorReply("Сэр, на сегодня бесплатный лимит запросов исчерпан. Попробуйте позже.")
+            if isinstance(e, OSError) or "URLError" in type(e).__name__:
+                return ErrorReply("Сэр, нет связи с облачным ядром. Проверьте интернет.")
+            if ("HTTP 400" in str(e) and "API key" in str(e)) or "HTTP 403" in str(e):
+                return ErrorReply("Сэр, ключ Gemini не принят. Проверьте его в файле настроек.")
+            return ErrorReply("Сэр, произошёл внутренний сбой при обработке запроса. Повторите, пожалуйста.")
         if step == 0:
             print(f"   ⏱  {model}: ответ через {time.time() - t0:.1f} с")
         cand = (r.get("candidates") or [{}])[0]
@@ -1340,8 +1348,9 @@ def handle(text):
     if local_command(cmd):
         return
     answer = think(text)
-    if answer.startswith("Сэр, ") and ("сбой" in answer or "связи" in answer or "ключ API" in answer):
-        say_async(answer)  # ошибки think возвращает, не озвучивая
+    if isinstance(answer, ErrorReply):
+        print(f"🤖 {answer}")
+        say_async(answer)  # ошибки think возвращает, не озвучивая — озвучиваем здесь
     wait_speech()
 
 
@@ -1578,6 +1587,8 @@ def run_text():
 
 
 if __name__ == "__main__":
+    if BRAIN == "claude" and anthropic is None:
+        sys.exit("Для мозга Claude установите пакет: pip install anthropic")
     if BRAIN == "claude" and not os.environ.get("ANTHROPIC_API_KEY"):
         sys.exit("Нет ANTHROPIC_API_KEY в .env")
     if BRAIN != "claude" and not os.environ.get("GEMINI_API_KEY"):
