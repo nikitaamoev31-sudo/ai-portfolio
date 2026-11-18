@@ -95,3 +95,20 @@ jobs:
         run: python -m pyflakes jarvis.py tests
       - name: Run offline tests
         run: pytest -q
+
+  sql-sales-analytics:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: sales-analytics-sql
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Commands from README work
+        run: python analyze.py --charts
+      - name: Run tests
+        run: pytest -q
