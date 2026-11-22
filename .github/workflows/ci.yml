@@ -139,3 +139,23 @@ jobs:
       - name: API log on failure
         if: failure()
         run: tail -100 job-tracker-api/app.log
+
+  support-log-triage:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: support-log-triage
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Commands from README work
+        run: |
+          python gen_logs.py
+          python triage.py errors | grep "errors=48"
+          bash playbook.sh > /dev/null
+      - name: Run tests
+        run: |
+          pip install -r requirements.txt
+          pytest -q
